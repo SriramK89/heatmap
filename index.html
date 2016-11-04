@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Heat mapper</title>
+  </head>
+  <style type="text/css">
+    header > h1 {
+      text-align: center;
+      color: blue;
+      width: 100%;
+      background-color: lightgray;
+      position: fixed;
+      left: 0;
+      top: 0;
+      margin-top: 0%;
+    }
+    content {
+      position: absolute;
+      top: 5%;
+    }
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width:100%;
+      text-align: center;
+      background-color: black;
+    }
+    footer > p {
+      color: lightgray;
+      font-size: 0.8em;
+    }
+    div {
+      width: 605px;
+      height: 500px;
+      border: 1px solid black;
+    }
+  </style>
+  <script type="text/javascript" src='jquery.min.js'></script>
+  <script type="text/javascript" src='css/heat_map.css'></script>
+  <script type="text/javascript" src='js/heat_map.js'></script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var data = [[1, 2], [3, 4], [5, 6, 7], [8, 9]];
+      $.drawHeatMap($('#mapHeat'), data);
+    });
+  </script>
+  <body>
+    <header>
+      <h1>Welcome to heat mapper</h1>
+    </header>
+    <content>
+      <p>The main heat map goes below...</p>
+      <div id='mapHeat'></div>
+    </content>
+    <footer>
+      <p>Thanks for stopping by. Developed by: Sriram.</p>
+    </footer>
+  </body>
+</html>
