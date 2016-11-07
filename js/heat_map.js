@@ -31,7 +31,7 @@ $.drawHeatMap = function(domToDraw, dataset, options = {}) {
   console.log(dataset);
   console.log('Width: ' + _domWidth);
   console.log('Height: ' + _domHeight);
-  var _tables = '<table cellspacing="0" style="border:1px solid black;';
+  var _tables = '<table cellspacing="0" style="';
   _tables += 'width:' + _domWidth + 'px;height:' + _domHeight + 'px;"><tbody>';
   function findColor(length)
   {
@@ -43,15 +43,16 @@ $.drawHeatMap = function(domToDraw, dataset, options = {}) {
   }
   for(_i = _x;_i >= 0;_i--) {
     if(options.title != undefined && options.title.show == true && _i == _x && options.title.position == true) {
-      _tables += '<tr><td style="height:20px;text-align:center;" colspan="' + (_y + 2) + '">' + options.title.text + '</td></tr>';
+      _tables += '<tr><td style="height:3.3%;text-align:center;"';
+      _tables += ' colspan="' + (_y + 2) + '">' + options.title.text + '</td></tr>';
     }
     _tables += '<tr>';
     for(_j = 0;_j <= _y;_j++) {
       if(_i == 0 && _j == 0) {
-        _tables += '<td style="width:20px;height:20px;"></td>';
+        _tables += '<td style="width:3.3%;height:3.3%;"></td>';
       } else if(_i > 0 && _j > 0) {
         var title = '';
-        _tables += '<td style="width:20px;height:20px;';
+        _tables += '<td style="width:3.3%;height:3.3%;';
         if(dataset[_i - 1][_j - 1] > 0) {
           var color = findColor(dataset[_i - 1][_j - 1]);
           _tables += 'background-color:' + color + ';';
@@ -65,13 +66,13 @@ $.drawHeatMap = function(domToDraw, dataset, options = {}) {
         }
         _tables += '" ' + title + '>' + '</td>';
       } else if(_j == 0 && _i > 0) {
-        _tables += '<td style="width:20px;height:20px;text-align:center;">';
+        _tables += '<td style="width:3.3%;height:3.3%;text-align:center;">';
         if(options.showLabels == true) {
           _tables += options.labels.y[_i - 1];
         }
         _tables += '</td>';
       } else if(_i == 0) {
-        _tables += '<td style="width:20px;height:20px;text-align:center;">';
+        _tables += '<td style="width:3.3%;height:3.3%;text-align:center;">';
         if(options.showLabels == true) {
           _tables += options.labels.x[_j - 1];
         }
@@ -79,13 +80,14 @@ $.drawHeatMap = function(domToDraw, dataset, options = {}) {
       }
       if(options.showScale == true) {
         if(_i == _x && _j == _y) {
-          _tables += '<td style="width:20px;" rowspan="' + _x + '"></td>';
+          _tables += '<td style="width:3.3%;" rowspan="' + (_x + 1) + '"></td>';
         }
       }
     }
     _tables += '</tr>';
     if(options.title != undefined && options.title.show == true && _i == 0 && options.title.position == false) {
-      _tables += '<td style="height:20px;text-align:center;" colspan="' + (_y + 2) + '">' + options.title.text + '</td>';
+      _tables += '<td style="height:3.3%;text-align:center;"';
+      _tables += ' colspan="' + (_y + 2) + '">' + options.title.text + '</td>';
     }
   }
   _tables += '</tbody></table>';
